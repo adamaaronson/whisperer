@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import * as htmlToImage from 'html-to-image';
 import html2canvas from 'html2canvas';
 import '../styles/App.scss'
 
