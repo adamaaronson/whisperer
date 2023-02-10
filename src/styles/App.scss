@@ -207,6 +207,7 @@ textarea {
 .image-text-evil {
     color: $black;
     z-index: 2;
+    pointer-events: none;
 }
 
 .image-image {

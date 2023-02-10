@@ -24,10 +24,30 @@ function App() {
             allowTaint: true,
             useCORS : true,
         }).then(function(canvas) {
+            const dataUrl = canvas.toDataURL();
             const link = document.createElement('a');
             link.download = 'whisperer-image';
-            link.href = canvas.toDataURL();
-            link.click();
+            link.href = dataUrl;
+
+            canvas.toBlob((blob) => {
+                if (blob) {
+                    const shareData = {
+                        files: [
+                            new File([blob], 'file.png', {
+                                type: blob.type,
+                            }),
+                        ]
+                    };
+                    if ("share" in navigator && navigator.canShare(shareData)) {
+                        // can use Web Share API
+                        navigator.share(shareData);
+                    } else {
+                        link.click();
+                    }
+                } else {
+                    link.click();
+                }
+            });
         });
     }
 
@@ -56,8 +76,8 @@ function App() {
                     </h1>
                 </div>
                 <h2 className="subtitle">
-                    create <a href="https://knowyourmeme.com/memes/sites/whisper" target="_blank" rel="noopener noreferrer">whisper</a><br/>
-                    images online
+                    create your own<br/>
+                    <a href="https://knowyourmeme.com/memes/sites/whisper" target="_blank" rel="noopener noreferrer">whisper</a> images
                 </h2>
             </header>
             <section className="settings-section">
