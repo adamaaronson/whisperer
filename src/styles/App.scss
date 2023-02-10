@@ -34,10 +34,13 @@ header {
 }
 
 .title {
-    color: $black;
+    color: $white;
     font-size: 7rem;
     font-family: $whisper-font;
     margin-bottom: 1rem;
+    font-weight: normal;
+    -webkit-text-stroke: 3px $black;
+
 }
 
 .title-evil {
@@ -75,6 +78,7 @@ textarea {
     font-weight: bold;
     font-family: inherit;
     height: 8rem;
+    border-radius: 0;
 }
 
 .settings-section {
