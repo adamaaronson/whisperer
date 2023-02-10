@@ -1,14 +1,23 @@
 @import '../main.scss';
 
+#root, .app-wrapper, html, body {
+    height: 100%;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .app {
+    align-self: center;
     text-align: center;
     display: flex;
     flex-flow: column wrap;
     max-width: 800px;
-    margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    color: $black;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 ::placeholder {
@@ -22,6 +31,14 @@
   
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: $gray;
+}
+
+footer {
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: right;
+    padding: 0.5rem;
+    line-height: 1.5em;
 }
 
 header {
@@ -111,6 +128,10 @@ textarea {
     padding: 1rem;
     border: $border;
     border-bottom: none;
+
+    @media (max-width: 350px) {
+        font-size: 1rem;
+    }
 }
 
 .text-field-wrapper, .image-upload-wrapper {
@@ -191,7 +212,7 @@ textarea {
     justify-content: center;
     z-index: 3;
     white-space: pre-line;
-    
+
     font-family: 'Whisper';
     color: $white;
     font-size: 4rem;
@@ -213,4 +234,18 @@ textarea {
 
 .image-image {
     z-index: 1;
+}
+
+.image-output-wrapper {
+    position: relative;
+}
+
+.change-image-button {
+    position: absolute;
+    right: -3px;
+    top: 0;
+    transform: translateY(calc(-100% - 1rem));
+
+    font-size: 1rem;
+    padding: 0.5rem;
 }
