@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as htmlToImage from 'html-to-image';
+import html2canvas from 'html2canvas';
 import '../styles/App.scss'
 
 const TEXT_STROKE_STEPS = 32;
@@ -20,11 +21,13 @@ function App() {
     }
 
     const downloadImage = () => {
-        htmlToImage.toCanvas(document.getElementById('image-output')!)
-        .then(function (dataUrl) {
+        html2canvas(document.getElementById('image-output')!,{
+            allowTaint: true,
+            useCORS : true,
+        }).then(function(canvas) {
             const link = document.createElement('a');
             link.download = 'whisperer-image';
-            link.href = dataUrl.toDataURL();
+            link.href = canvas.toDataURL();
             link.click();
         });
     }
