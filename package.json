@@ -1,7 +1,7 @@
 {
   "name": "whisperer",
   "homepage": "https://aaronson.org/whisperer/",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
