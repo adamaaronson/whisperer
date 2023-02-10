@@ -1,0 +1,22 @@
+$main-font: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$whisper-font: 'Whisper';
+$black: #111;
+$white: #fafafa;
+$gray: #999;
+$border: 3px solid $black;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Whisper';
+    src: url(./fonts/Upright.otf) format('opentype');
+}
+
+body {
+    background: pink;
+    font-family: $main-font;
+}

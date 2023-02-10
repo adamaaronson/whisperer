@@ -1,0 +1,123 @@
+@import '../main.scss';
+
+.app {
+    text-align: center;
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: $black;
+}
+
+::placeholder {
+    color: $gray;
+    opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $gray;
+}
+  
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: $gray;
+}
+
+.title {
+    font-family: 'Whisper';
+    color: $white;
+    font-size: 7rem;
+    -webkit-text-stroke: 3px $black;
+    margin-bottom: 1rem;
+}
+
+button {
+    border: $border;
+    font-family: inherit;
+    background: $white;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:disabled {
+        cursor: default;
+        opacity: 50%;
+    }
+}
+
+textarea {
+    border: $border;
+    background: $white;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: inherit;
+    height: 8rem;
+}
+
+.settings-section {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.text-field-label {
+    font-weight: bold;
+    font-size: 1.5rem;
+    background: $white;
+    padding: 1rem;
+    border: $border;
+    border-bottom: none;
+}
+
+.text-field-wrapper, .image-upload-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+}
+
+.output-section {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.text-field, .image-upload-label, .image-canvas-wrapper {
+    width: min(35rem, 95vw);
+}
+
+.image-upload-label {
+    background: $white;
+    border: $border;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+    color: $gray;
+    cursor: pointer;
+}
+
+.image-upload {
+    display: none;
+}
+
+.image-upload-border {
+    border: 3px dashed $gray;
+    padding: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.image-canvas-wrapper {
+    background: $white;
+    border: $border;
+    padding: 0;
+
+    img {
+        margin: 0;
+        display: block;
+    }
+}
