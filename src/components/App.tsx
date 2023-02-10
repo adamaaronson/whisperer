@@ -78,17 +78,19 @@ function App() {
                     { hasUploaded ?
                         <div className="image-output-wrapper">
                             <div className="image-output" id="image-output">
-                                <div className="image-text">
-                                    {imageText}
-                                </div>
-                                { getTextShadowCoordinates(TEXT_STROKE_STEPS, 0.06).map(coord =>
-                                    <div className="image-text-evil" style={{
-                                        "left": coord.x + "em",
-                                        "top": coord.y + "em"
-                                    }}>
+                                <div className="image-text-wrapper">
+                                    <div className="image-text">
                                         {imageText}
                                     </div>
-                                ) }
+                                    { getTextShadowCoordinates(TEXT_STROKE_STEPS, 0.06).map(coord =>
+                                        <div className="image-text-evil" style={{
+                                            "left": coord.x + "em",
+                                            "top": coord.y + "em"
+                                        }}>
+                                            {imageText}
+                                        </div>
+                                    ) }
+                                </div>
                                 <div className="image-image">
                                     <img src={imageObjectUrl} width="100%" />
                                 </div>

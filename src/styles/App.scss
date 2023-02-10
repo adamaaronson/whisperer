@@ -31,6 +31,12 @@ header {
     gap: 1rem;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 600px) {
+        flex-flow: column wrap;
+        gap: 0;
+        margin-bottom: 2rem;
+    }
 }
 
 .title {
@@ -40,6 +46,11 @@ header {
     margin-bottom: 1rem;
     font-weight: normal;
     -webkit-text-stroke: 3px $black;
+
+    @media (max-width: 400px) {
+        font-size: 6rem;
+        -webkit-text-stroke: 2px $black;
+    }
 
 }
 
@@ -53,6 +64,10 @@ header {
 .subtitle {
     text-align: left;
     margin-top: -10px;
+
+    @media (max-width: 600px) {
+        text-align: center;
+    }
 }
 
 button {
@@ -153,6 +168,14 @@ textarea {
 .image-output {
     position: relative;
     overflow: hidden;
+}
+
+.image-text-wrapper {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    height: calc(100% - 2rem);
 }
 
 .image-text, .image-text-evil {
