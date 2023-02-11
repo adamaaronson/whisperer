@@ -10,6 +10,7 @@ import { ImageModal } from './ImageModal';
 function App() {
     let [imageText, setImageText] = useState('');
     let [imageObjectUrl, setImageObjectUrl] = useState('');
+    let [whisperImageUrl, setWhisperImageUrl] = useState('');
     let [hasUploaded, setHasUploaded] = useState(false);
     let [canDownload, setCanDownload] = useState(false);
     let [imageModalVisible, setImageModalVisible] = useState(false);
@@ -25,30 +26,12 @@ function App() {
             allowTaint: true,
             useCORS: true,
         }).then(function(canvas) {
-            const dataUrl = canvas.toDataURL();
-            const link = document.createElement('a');
-            link.download = 'whisperer-image';
-            link.href = dataUrl;
-
             canvas.toBlob((blob) => {
                 if (blob) {
-                    const shareData = {
-                        files: [
-                            new File([blob], 'file.png', {
-                                type: blob.type,
-                            }),
-                        ]
-                    };
-                    if ("share" in navigator && navigator.canShare(shareData)) {
-                        // can use Web Share API
-                        navigator.share(shareData);
-                    } else {
-                        link.click();
-                    }
-                } else {
-                    link.click();
+                    setWhisperImageUrl(URL.createObjectURL(blob))
+                    setImageModalVisible(true);
                 }
-            });
+            }, 'image/png')
         });
     }
 
@@ -86,11 +69,14 @@ function App() {
                 </section>
                 <section className="download-section">
                     <button className="download-image-button" disabled={!canDownload} onClick={() => downloadImage()}>
-                        Generate image
+                        Generate whisper
                     </button>
                 </section>
                 { imageModalVisible &&
-                    <ImageModal />
+                    <ImageModal 
+                        imageUrl={whisperImageUrl}
+                        onCloseModal={() => setImageModalVisible(false)}
+                    />
                 }
             </div>
             <Footer/>

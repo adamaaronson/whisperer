@@ -35,7 +35,7 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
                     {imageText}
                 </div>
                 { getTextShadowCoordinates(TEXT_STROKE_STEPS, 0.06).map(coord =>
-                    <div className="image-text-evil" style={{
+                    <div className="image-text-evil" key={`${coord.x}, ${coord.y}`} style={{
                         "left": coord.x + "em",
                         "top": coord.y + "em"
                     }}>

@@ -93,7 +93,7 @@ textarea {
 }
 
 .text-field, .image-upload-label, .image-output-wrapper {
-    width: min(35rem, 95vw);
+    width: min(35rem, 100vw - 1rem);
 }
 
 .image-field-wrapper {

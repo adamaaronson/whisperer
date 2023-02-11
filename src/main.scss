@@ -3,6 +3,7 @@ $whisper-font: 'Whisper';
 $black: #111;
 $white: #fafafa;
 $gray: #999;
+$background-color: pink;
 $border: 3px solid $black;
 
 * {
@@ -17,7 +18,7 @@ $border: 3px solid $black;
 }
 
 body {
-    background: pink;
+    background: $background-color;
     font-family: $main-font;
     color: $black;
 }
