@@ -22,7 +22,7 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                 </button>
             </div>
             <div className="image-modal-output">
-                <img className="image-modal-output-image" src={imageUrl} crossOrigin="anonymous" />
+                <img className="image-modal-output-image" src={imageUrl} alt="whisper" crossOrigin="anonymous" />
             </div>
         </div>
     </div>
