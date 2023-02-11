@@ -33,60 +33,6 @@
     color: $gray;
 }
 
-footer {
-    font-weight: bold;
-    font-size: 0.8rem;
-    text-align: right;
-    padding: 0.5rem;
-    line-height: 1.5em;
-}
-
-header {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-flow: row wrap;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-
-    @media (max-width: 600px) {
-        flex-flow: column wrap;
-        gap: 0;
-        margin-bottom: 2rem;
-    }
-}
-
-.title {
-    color: $white;
-    font-size: 7rem;
-    font-family: $whisper-font;
-    margin-bottom: 1rem;
-    font-weight: normal;
-    -webkit-text-stroke: 3px $black;
-
-    @media (max-width: 400px) {
-        font-size: 6rem;
-        -webkit-text-stroke: 2px $black;
-    }
-
-}
-
-.title-evil {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.subtitle {
-    text-align: left;
-    margin-top: -10px;
-
-    @media (max-width: 600px) {
-        text-align: center;
-    }
-}
-
 button {
     border: $border;
     font-family: inherit;
@@ -134,7 +80,7 @@ textarea {
     }
 }
 
-.text-field-wrapper, .image-upload-wrapper {
+.text-field-wrapper, .image-field-wrapper {
     display: flex;
     flex-flow: column wrap;
     align-items: flex-start;
@@ -150,94 +96,8 @@ textarea {
     width: min(35rem, 95vw);
 }
 
-.image-upload-label {
-    background: $white;
-    border: $border;
-    font-size: 2rem;
-    font-weight: bold;
-    padding: 1rem;
-    color: $gray;
-    cursor: pointer;
-}
-
-.image-upload {
-    display: none;
-}
-
-.image-upload-border {
-    border: 3px dashed $gray;
-    padding: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    border-radius: 1rem;
-}
-
-.image-output-wrapper {
-    background: $white;
-    border: $border;
-    padding: 0;
-
-    img {
-        margin: 0;
-        display: block;
-    }
-}
-
-.image-upload-wrapper {
+.image-field-wrapper {
     margin-bottom: 2rem;
-}
-
-.image-output {
-    position: relative;
-    overflow: hidden;
-}
-
-.image-text-wrapper {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    width: calc(100% - 2rem);
-    height: calc(100% - 2rem);
-}
-
-.image-text, .image-text-evil {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    white-space: pre-line;
-
-    font-family: 'Whisper';
-    color: $white;
-    font-size: 4rem;
-
-    @media (max-width: 500px) {
-        font-size: 3rem;
-    }
-
-    @media (max-width: 350px) {
-        font-size: 2.5rem;
-    }
-}
-
-.image-text-evil {
-    color: $black;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.image-image {
-    z-index: 1;
-}
-
-.image-output-wrapper {
-    position: relative;
 }
 
 .change-image-button {

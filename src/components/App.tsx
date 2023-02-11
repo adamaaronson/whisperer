@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import html2canvas from 'html2canvas';
 import '../styles/App.scss'
-
-const TEXT_STROKE_STEPS = 32;
-const APP_TITLE = "Whisperer"
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { ImageUploader } from './ImageUploader';
+import { ImageOutput } from './ImageOutput';
+import { ImageModal } from './ImageModal';
 
 function App() {
     let [imageText, setImageText] = useState('');
     let [imageObjectUrl, setImageObjectUrl] = useState('');
     let [hasUploaded, setHasUploaded] = useState(false);
     let [canDownload, setCanDownload] = useState(false);
+    let [imageModalVisible, setImageModalVisible] = useState(false);
 
     const uploadImage = (image: File) => {
         setHasUploaded(true);
@@ -49,36 +52,10 @@ function App() {
         });
     }
 
-    const getTextShadowCoordinates = (steps: number, strokeWidth: number) => {
-        let coordinates = []
-        
-        for (let i = 0; i < steps; i++) {
-            let angle = (i * 2 * Math.PI) / steps;
-            let cos = Math.round(10000 * Math.cos(angle)) / 10000;
-            let sin = Math.round(10000 * Math.sin(angle)) / 10000;
-            coordinates.push({
-                "x": cos * strokeWidth,
-                "y": sin * strokeWidth
-            })
-        }
-
-        return coordinates;
-    }
-
     return (
         <div className="app-wrapper">
             <div className="app">
-                <header className="app-header">
-                    <div className="title-wrapper">
-                        <h1 className="title">
-                            {APP_TITLE}
-                        </h1>
-                    </div>
-                    <h2 className="subtitle">
-                        create your own<br/>
-                        <a href="https://knowyourmeme.com/memes/sites/whisper" target="_blank" rel="noopener noreferrer">whisper</a> images
-                    </h2>
-                </header>
+                <Header/>
                 <section className="settings-section">
                     <div className="text-field-wrapper">
                         <label htmlFor="text-field" className="text-field-label">
@@ -92,64 +69,31 @@ function App() {
                             onChange={e => setImageText(e.target.value)}
                         />
                     </div>
-                    <div className="image-upload-wrapper">
+                    <div className="image-field-wrapper">
                         <div className="text-field-label">
                             Select image:
                         </div>
                         { hasUploaded ?
-                            <div className="image-output-wrapper">
-                                <button className="change-image-button" onClick={() => setHasUploaded(false)}>
-                                    Change image
-                                </button>
-                                <div className="image-output" id="image-output">
-                                    <div className="image-text-wrapper">
-                                        <div className="image-text">
-                                            {imageText}
-                                        </div>
-                                        { getTextShadowCoordinates(TEXT_STROKE_STEPS, 0.06).map(coord =>
-                                            <div className="image-text-evil" style={{
-                                                "left": coord.x + "em",
-                                                "top": coord.y + "em"
-                                            }}>
-                                                {imageText}
-                                            </div>
-                                        ) }
-                                    </div>
-                                    <div className="image-image">
-                                        <img src={imageObjectUrl} width="100%" />
-                                    </div>
-                                </div>
-                            </div>
+                            <ImageOutput 
+                                imageText={imageText}
+                                imageObjectUrl={imageObjectUrl}
+                                onChangeImage={() => setHasUploaded(false)}
+                            />
                         :
-                            <>
-                                <label className="image-upload-label" htmlFor="image-upload">
-                                    <div className="image-upload-border">
-                                        click to upload <i className="fa fa-solid fa-upload"></i>
-                                    </div>
-                                </label>
-                                <input
-                                    id="image-upload"
-                                    className="image-upload"
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={e => uploadImage(e.target.files![0])}
-                                />
-                            </>
+                            <ImageUploader onUploadImage={uploadImage} />
                         }
-                        
                     </div>
                 </section>
                 <section className="download-section">
                     <button className="download-image-button" disabled={!canDownload} onClick={() => downloadImage()}>
-                        Download image
+                        Generate image
                     </button>
                 </section>
+                { imageModalVisible &&
+                    <ImageModal />
+                }
             </div>
-            <footer>
-                made by <a href="https://twitter.com/aaaronson" target="_blank" rel="noopener noreferrer">Adam Aaronson</a><br/>
-                thanks to <a href="https://twitter.com/anniierau" target="_blank" rel="noopener noreferrer">Annie Rauwerda</a>'s idea<br/>
-                not affiliated with <a href="https://whisper.sh" target="_blank" rel="noopener noreferrer">whisper</a>
-            </footer>
+            <Footer/>
         </div>
     )
 }

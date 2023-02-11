@@ -1,0 +1,23 @@
+@import '../main.scss';
+
+.image-upload-label {
+    background: $white;
+    border: $border;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+    color: $gray;
+    cursor: pointer;
+}
+
+.image-upload {
+    display: none;
+}
+
+.image-upload-border {
+    border: 3px dashed $gray;
+    padding: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 1rem;
+}
