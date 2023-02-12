@@ -34,12 +34,8 @@ function App() {
             allowTaint: true,
             useCORS: true,
         }).then(function(canvas) {
-            canvas.toBlob((blob) => {
-                if (blob) {
-                    setWhisperImageUrl(URL.createObjectURL(blob))
-                    setImageModalVisible(true);
-                }
-            }, 'image/png')
+            setWhisperImageUrl(canvas.toDataURL('image/png'));
+            setImageModalVisible(true);
         });
     }
 
