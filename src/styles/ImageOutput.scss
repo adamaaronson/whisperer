@@ -77,7 +77,11 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
     column-gap: 1rem;
     row-gap: 0.5rem;
+}
+
+.settings-item-input {
+    margin-bottom: -0.3em;
 }
