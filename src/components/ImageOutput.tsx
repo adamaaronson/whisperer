@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import '../styles/ImageOutput.scss';
 
 const TEXT_STROKE_STEPS = 32;
@@ -7,15 +6,19 @@ interface Props {
     imageText: string
     imageObjectUrl: string
     onChangeImage: () => void
+    settings: Settings
+    setSetting: (setting: Partial<Settings>) => void
 }
 
-export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props) {
-    const [fontSize, setFontSize] = useState("1")
-    const [font, setFont] = useState("Whisper")
-    const [outline, setOutline] = useState(true)
-    const [textColor, setTextColor] = useState("#fafafa")
-    const [outlineColor, setOutlineColor] = useState("#111")
+export interface Settings {
+    fontSize: string
+    font: string
+    outline: boolean
+    textColor: string
+    outlineColor: string
+}
 
+export function ImageOutput({ imageText, imageObjectUrl, onChangeImage, settings, setSetting }: Props) {
     const getTextShadowCoordinates = (steps: number, strokeWidth: number) => {
         let coordinates = []
         
@@ -33,7 +36,7 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
     }
 
     const getFontSize = () => {
-        return {fontSize: `${fontSize}em`}
+        return {fontSize: `${settings.fontSize}em`}
     }
 
     return <div className="image-output-wrapper full-width-box">
@@ -43,18 +46,18 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
         <div className="image-output" id="image-output">
             <div className="image-text-wrapper">
                 <div className="image-text" style={{
-                    color: textColor,
-                    fontFamily: font,
+                    color: settings.textColor,
+                    fontFamily: settings.font,
                     ...getFontSize()
                 }}>
                     {imageText}
                 </div>
-                { outline && getTextShadowCoordinates(TEXT_STROKE_STEPS, 0.06).map(coord =>
+                { settings.outline && getTextShadowCoordinates(TEXT_STROKE_STEPS, 0.06).map(coord =>
                     <div className="image-text-evil" key={`${coord.x}, ${coord.y}`} style={{
                         left: coord.x + "em",
                         top: coord.y + "em",
-                        color: outlineColor,
-                        fontFamily: font,
+                        color: settings.outlineColor,
+                        fontFamily: settings.font,
                         ...getFontSize()
                     }}>
                         {imageText}
@@ -76,8 +79,8 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
                     min="0.25"
                     max="5"
                     step="0.05"
-                    onChange={(e) => {setFontSize(e.target.value)}}
-                    defaultValue={fontSize}
+                    onChange={(e) => {setSetting({ fontSize: e.target.value })}}
+                    defaultValue={settings.fontSize}
                 />
             </div>
             <div className="settings-item">
@@ -86,8 +89,8 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
                 </div>
                 <select
                     className="settings-item-input"
-                    value={font}
-                    onChange={(e) => {setFont(e.target.value)}}
+                    value={settings.font}
+                    onChange={(e) => {setSetting({ font: e.target.value })}}
                 >
                     <option value="Whisper">Upright (default)</option>
                     <option value="Arial">Arial</option>
@@ -102,8 +105,8 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
                 <input
                     className="settings-item-input"
                     type="checkbox"
-                    checked={outline}
-                    onClick={() => setOutline(!outline)}
+                    checked={settings.outline}
+                    onClick={() => {setSetting({ outline: !settings.outline })}}
                 />
             </div>
             <div className="settings-item">
@@ -113,8 +116,8 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
                 <input
                     className="settings-item-input"
                     type="color"
-                    value={textColor}
-                    onChange={(e) => {setTextColor(e.target.value)}}
+                    value={settings.textColor}
+                    onChange={(e) => {setSetting({ textColor: e.target.value })}}
                 />
             </div>
             <div className="settings-item">
@@ -124,8 +127,8 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage }: Props)
                 <input
                     className="settings-item-input"
                     type="color"
-                    value={outlineColor}
-                    onChange={(e) => {setOutlineColor(e.target.value)}}
+                    value={settings.outlineColor}
+                    onChange={(e) => {setSetting({ outlineColor: e.target.value })}}
                 />
             </div>
         </div>

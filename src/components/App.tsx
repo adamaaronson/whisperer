@@ -4,16 +4,23 @@ import '../styles/App.scss'
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ImageUploader } from './ImageUploader';
-import { ImageOutput } from './ImageOutput';
+import { Settings, ImageOutput } from './ImageOutput';
 import { ImageModal } from './ImageModal';
 
 function App() {
-    let [imageText, setImageText] = useState('');
-    let [imageObjectUrl, setImageObjectUrl] = useState('');
-    let [whisperImageUrl, setWhisperImageUrl] = useState('');
-    let [hasUploaded, setHasUploaded] = useState(false);
-    let [canDownload, setCanDownload] = useState(false);
-    let [imageModalVisible, setImageModalVisible] = useState(false);
+    const [imageText, setImageText] = useState('');
+    const [imageObjectUrl, setImageObjectUrl] = useState('');
+    const [whisperImageUrl, setWhisperImageUrl] = useState('');
+    const [hasUploaded, setHasUploaded] = useState(false);
+    const [canDownload, setCanDownload] = useState(false);
+    const [imageModalVisible, setImageModalVisible] = useState(false);
+    const [settings, setSettings] = useState<Settings>({
+        fontSize: "1",
+        font: "Whisper",
+        outline: true,
+        textColor: "#fafafa",
+        outlineColor: "#111"
+    })
 
     const uploadImage = (image: File) => {
         setHasUploaded(true);
@@ -61,6 +68,8 @@ function App() {
                                 imageText={imageText}
                                 imageObjectUrl={imageObjectUrl}
                                 onChangeImage={() => setHasUploaded(false)}
+                                settings={settings}
+                                setSetting={setting => setSettings({...settings, ...setting})}
                             />
                         :
                             <ImageUploader onUploadImage={uploadImage} />
