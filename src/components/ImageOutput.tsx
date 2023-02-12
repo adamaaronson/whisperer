@@ -16,9 +16,23 @@ export interface Settings {
     outline: boolean
     textColor: string
     outlineColor: string
+    textAlignment: TextAlignment
+}
+
+export enum TextAlignment {
+    Center = "center",
+    Top = "top",
+    Bottom = "bottom",
+    Left = "left",
+    Right = "right",
+    TopLeft = "topleft",
+    TopRight = "topright",
+    BottomLeft = "bottomleft",
+    BottomRight = "bottomright",
 }
 
 export function ImageOutput({ imageText, imageObjectUrl, onChangeImage, settings, setSetting }: Props) {
+    
     const getTextShadowCoordinates = (steps: number, strokeWidth: number) => {
         let coordinates = []
         
@@ -35,8 +49,58 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage, settings
         return coordinates;
     }
 
-    const getFontSize = () => {
+    const getFontSizeStyle = () => {
         return {fontSize: `${settings.fontSize}em`}
+    }
+
+    const getTextAlignmentStyle = () => {
+        switch (settings.textAlignment) {
+            case TextAlignment.Center: return {
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center" as const,
+            }
+            case TextAlignment.Top: return {
+                justifyContent: "center",
+                alignItems: "flex-start",
+                textAlign: "center" as const,
+            }
+            case TextAlignment.Bottom: return {
+                justifyContent: "center",
+                alignItems: "flex-end",
+                textAlign: "center" as const,
+            }
+            case TextAlignment.Left: return {
+                justifyContent: "flex-start",
+                alignItems: "center",
+                textAlign: "left" as const,
+            }
+            case TextAlignment.Right: return {
+                justifyContent: "flex-end",
+                alignItems: "center",
+                textAlign: "right" as const,
+            }
+            case TextAlignment.TopLeft: return {
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+                textAlign: "left" as const,
+            }
+            case TextAlignment.TopRight: return {
+                justifyContent: "flex-end",
+                alignItems: "flex-start",
+                textAlign: "right" as const,
+            }
+            case TextAlignment.BottomLeft: return {
+                justifyContent: "flex-start",
+                alignItems: "flex-end",
+                textAlign: "left" as const,
+            }
+            case TextAlignment.BottomRight: return {
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+                textAlign: "right" as const,
+            }
+        }
     }
 
     return <div className="image-output-wrapper full-width-box">
@@ -48,7 +112,8 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage, settings
                 <div className="image-text" style={{
                     color: settings.textColor,
                     fontFamily: settings.font,
-                    ...getFontSize()
+                    ...getFontSizeStyle(),
+                    ...getTextAlignmentStyle()
                 }}>
                     {imageText}
                 </div>
@@ -58,7 +123,8 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage, settings
                         top: coord.y + "em",
                         color: settings.outlineColor,
                         fontFamily: settings.font,
-                        ...getFontSize()
+                        ...getFontSizeStyle(),
+                        ...getTextAlignmentStyle()
                     }}>
                         {imageText}
                     </div>
@@ -85,6 +151,26 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage, settings
             </div>
             <div className="settings-item">
                 <div className="settings-item-name">
+                    Align text:
+                </div>
+                <select
+                    className="settings-item-input"
+                    value={settings.textAlignment}
+                    onChange={(e) => {setSetting({ textAlignment: e.target.value as TextAlignment })}}
+                >
+                    <option value={TextAlignment.Center}>Center</option>
+                    <option value={TextAlignment.Top}>Top</option>
+                    <option value={TextAlignment.Bottom}>Bottom</option>
+                    <option value={TextAlignment.Left}>Left</option>
+                    <option value={TextAlignment.Right}>Right</option>
+                    <option value={TextAlignment.TopLeft}>Top left</option>
+                    <option value={TextAlignment.TopRight}>Top right</option>
+                    <option value={TextAlignment.BottomLeft}>Bottom left</option>
+                    <option value={TextAlignment.BottomRight}>Bottom right</option>
+                </select>
+            </div>
+            <div className="settings-item">
+                <div className="settings-item-name">
                     Font:
                 </div>
                 <select
@@ -105,7 +191,7 @@ export function ImageOutput({ imageText, imageObjectUrl, onChangeImage, settings
                 <input
                     className="settings-item-input"
                     type="checkbox"
-                    checked={settings.outline}
+                    defaultChecked={settings.outline}
                     onClick={() => {setSetting({ outline: !settings.outline })}}
                 />
             </div>

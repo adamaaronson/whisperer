@@ -4,7 +4,7 @@ import '../styles/App.scss'
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ImageUploader } from './ImageUploader';
-import { Settings, ImageOutput } from './ImageOutput';
+import { Settings, TextAlignment, ImageOutput } from './ImageOutput';
 import { ImageModal } from './ImageModal';
 
 function App() {
@@ -19,7 +19,8 @@ function App() {
         font: "Whisper",
         outline: true,
         textColor: "#fafafa",
-        outlineColor: "#111"
+        outlineColor: "#111",
+        textAlignment: TextAlignment.Center
     })
 
     const uploadImage = (image: File) => {
@@ -46,7 +47,7 @@ function App() {
         <div className="app-wrapper">
             <div className="app">
                 <Header/>
-                <section className="settings-section">
+                <section className="input-section">
                     <div className="text-field-wrapper field-wrapper">
                         <label htmlFor="text-field" className="field-label">
                             Enter text:
