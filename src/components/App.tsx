@@ -40,20 +40,20 @@ function App() {
             <div className="app">
                 <Header/>
                 <section className="settings-section">
-                    <div className="text-field-wrapper">
-                        <label htmlFor="text-field" className="text-field-label">
+                    <div className="text-field-wrapper field-wrapper">
+                        <label htmlFor="text-field" className="field-label">
                             Enter text:
                         </label>
                         <textarea
                             id="text-field"
-                            className="text-field"
+                            className="text-field full-width-box"
                             placeholder="blah blah blah"
                             value={imageText}
                             onChange={e => setImageText(e.target.value)}
                         />
                     </div>
-                    <div className="image-field-wrapper">
-                        <div className="text-field-label">
+                    <div className="image-field-wrapper field-wrapper">
+                        <div className="field-label">
                             Select image:
                         </div>
                         { hasUploaded ?

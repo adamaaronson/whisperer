@@ -20,7 +20,7 @@ export function ImageUploader({ onUploadImage }: Props) {
 
     return <>
         <label
-            className="image-upload-label"
+            className="image-upload-label full-width-box"
             htmlFor="image-upload"
             onDrop={(e) => handleDrop(e)}
             onDragOver={(e) => e.preventDefault()}
