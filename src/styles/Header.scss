@@ -1,15 +1,15 @@
-@import '../main.scss';
+@import "../main.scss";
 
 header {
     margin-bottom: 1rem;
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: row;
     gap: 1rem;
     align-items: center;
     justify-content: center;
 
     @media (max-width: 600px) {
-        flex-flow: column wrap;
+        flex-direction: column;
         gap: 0;
         margin-bottom: 2rem;
     }
@@ -27,7 +27,6 @@ header {
         font-size: 6rem;
         -webkit-text-stroke: 2px $black;
     }
-
 }
 
 .subtitle {
