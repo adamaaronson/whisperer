@@ -5,7 +5,7 @@ export function Header() {
         <header className="app-header">
             <h1 className="title">Whisperer</h1>
             <h2 className="subtitle">
-                create your own
+                create&nbsp;your&nbsp;own
                 <br />
                 <a
                     href="https://knowyourmeme.com/memes/sites/whisper"
@@ -13,8 +13,8 @@ export function Header() {
                     rel="noopener noreferrer"
                 >
                     whisper
-                </a>{" "}
-                images
+                </a>
+                &nbsp;images
             </h2>
         </header>
     );
