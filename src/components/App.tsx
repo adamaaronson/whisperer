@@ -32,10 +32,10 @@ function App() {
     const removePartialPixels = () => {
         const imageOutput = document.getElementById("image-output");
         if (imageOutput) {
-            const height = imageOutput.getBoundingClientRect().height;
             const width = imageOutput.getBoundingClientRect().width;
-            imageOutput.style.height = Math.floor(height) + "px";
+            const height = imageOutput.getBoundingClientRect().height;
             imageOutput.style.width = Math.floor(width) + "px";
+            imageOutput.style.height = Math.floor(height) + "px";
         }
     };
 
