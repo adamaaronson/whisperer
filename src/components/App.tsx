@@ -33,7 +33,9 @@ function App() {
         const imageOutput = document.getElementById("image-output");
         if (imageOutput) {
             const height = imageOutput.getBoundingClientRect().height;
+            const width = imageOutput.getBoundingClientRect().width;
             imageOutput.style.height = Math.floor(height) + "px";
+            imageOutput.style.width = Math.floor(width) + "px";
         }
     };
 
