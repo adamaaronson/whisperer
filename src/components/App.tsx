@@ -6,6 +6,8 @@ import { Footer } from "./Footer";
 import { ImageUploader } from "./ImageUploader";
 import { Settings, TextAlignment, ImageOutput } from "./ImageOutput";
 import { ImageModal } from "./ImageModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
     const [imageText, setImageText] = useState("");
@@ -55,6 +57,15 @@ function App() {
         <div className="app-wrapper">
             <div className="app">
                 <Header />
+                <div className="callout">
+                    <a
+                        href="https://aaronson.org/sidle/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    ></a>
+                    check out my new game, Sidle!{" "}
+                    <FontAwesomeIcon icon={faArrowRight} />
+                </div>
                 <section className="input-section">
                     <div className="text-field-wrapper field-wrapper">
                         <label htmlFor="text-field" className="field-label">
