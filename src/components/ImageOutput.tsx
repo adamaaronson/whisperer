@@ -218,6 +218,7 @@ export function ImageOutput({
                         <option value="Whisper">Upright (default)</option>
                         <option value="Arial">Arial</option>
                         <option value="Courier New">Courier New</option>
+                        <option value="Impact">Impact</option>
                         <option value="Times New Roman">Times New Roman</option>
                     </select>
                 </div>
