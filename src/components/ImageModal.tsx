@@ -41,7 +41,11 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                 </div>
                 <div className="image-modal-footer">
                     got feedback? fill out this{" "}
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPumIVFRfFFLpDfTZDMXdArtbP4M6WQDJX1PxO7wQBLAyq0w/viewform">
+                    <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSfPumIVFRfFFLpDfTZDMXdArtbP4M6WQDJX1PxO7wQBLAyq0w/viewform"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         quick survey
                     </a>
                     !
