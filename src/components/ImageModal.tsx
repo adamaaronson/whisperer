@@ -6,7 +6,9 @@ interface Props {
 }
 
 export function ImageModal({ imageUrl, onCloseModal }: Props) {
-    const canShare = "share" in navigator && navigator.canShare();
+    const canShare = /Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(
+        navigator.userAgent
+    );
 
     const shareImage = async () => {
         const blob = await fetch(imageUrl).then((response) => response.blob());
