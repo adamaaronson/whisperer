@@ -15,7 +15,7 @@
 
 .image-modal {
     width: min(600px, 100vw - 2rem);
-    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
     overflow: scroll;
     border: $border;
     background: $background-color;
