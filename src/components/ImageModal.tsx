@@ -52,7 +52,7 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                 </div>
                 <div className="image-modal-footer">
                     <div className="image-modal-download-button-wrapper">
-                        {!canShare ? (
+                        {canShare ? (
                             <button
                                 onClick={shareImage}
                                 className="image-modal-download-button"
