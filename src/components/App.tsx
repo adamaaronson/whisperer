@@ -102,15 +102,6 @@ function App() {
                         onCloseModal={() => setImageModalVisible(false)}
                     />
                 )}
-                <div className="callout">
-                    <a
-                        href="https://crosswordcal.com/products/2025-crossword-calendar"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    ></a>
-                    check out my 2025 Crossword Calendar!{" "}
-                    <FontAwesomeIcon icon={faArrowRight} />
-                </div>
             </div>
             <Footer />
         </div>
