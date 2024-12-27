@@ -20,11 +20,19 @@
     border: $border;
     background: $background-color;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .image-modal-subtitle {
     font-weight: bold;
     font-size: 1rem;
+}
+
+.image-modal-output {
+    overflow: scroll;
+    border-top: $border;
+    border-bottom: $border;
 }
 
 .image-modal-output-image {
@@ -54,7 +62,22 @@
     font-weight: bold;
     padding: 1rem;
     text-align: left;
-    border-top: $border;
+}
+
+.image-modal-download-button {
+    background: $white;
+    border: $border;
+    height: 3rem;
+    line-height: 2.5rem;
+    padding: 0 1rem;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    text-decoration: none !important;
+
+    &:hover {
+        text-decoration: none !important;
+        border-bottom: $border;
+    }
 }
 
 .image-modal-close-button {

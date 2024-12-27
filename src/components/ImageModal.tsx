@@ -6,6 +6,15 @@ interface Props {
 }
 
 export function ImageModal({ imageUrl, onCloseModal }: Props) {
+    const canShare = "share" in navigator && navigator.canShare();
+
+    const shareImage = async () => {
+        const blob = await fetch(imageUrl).then((response) => response.blob());
+        navigator.share({
+            files: [new File([blob], "whisper.png", { type: blob.type })],
+        });
+    };
+
     return (
         <div className="image-modal-wrapper" onClick={onCloseModal}>
             <div
@@ -20,10 +29,26 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                             here is your whisper:
                         </h4>
                         <h5 className="image-modal-subtitle">
-                            save it, or it'll disappear when you close this
-                            window
+                            make sure to save it!
                         </h5>
                     </div>
+                    {canShare ? (
+                        <button
+                            onClick={shareImage}
+                            className="image-modal-download-button"
+                        >
+                            Save
+                        </button>
+                    ) : (
+                        <a
+                            href={imageUrl}
+                            className="image-modal-download-button"
+                            download
+                        >
+                            Save
+                        </a>
+                    )}
+
                     <button
                         className="image-modal-close-button"
                         onClick={onCloseModal}
