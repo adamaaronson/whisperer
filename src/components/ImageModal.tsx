@@ -52,12 +52,12 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                 </div>
                 <div className="image-modal-footer">
                     <div className="image-modal-download-button-wrapper">
-                        {canShare ? (
+                        {!canShare ? (
                             <button
                                 onClick={shareImage}
                                 className="image-modal-download-button"
                             >
-                                Share image
+                                Share
                             </button>
                         ) : (
                             <a
@@ -65,7 +65,7 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                                 className="image-modal-download-button"
                                 download
                             >
-                                Save image
+                                Save
                             </a>
                         )}
                     </div>
@@ -78,7 +78,7 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            quick survey
+                            quick&nbsp;survey
                         </a>
                         !
                     </div>
