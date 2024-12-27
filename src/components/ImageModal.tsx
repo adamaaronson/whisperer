@@ -34,22 +34,6 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                             make sure to save it!
                         </h5>
                     </div>
-                    {canShare ? (
-                        <button
-                            onClick={shareImage}
-                            className="image-modal-download-button"
-                        >
-                            Save
-                        </button>
-                    ) : (
-                        <a
-                            href={imageUrl}
-                            className="image-modal-download-button"
-                            download
-                        >
-                            Save
-                        </a>
-                    )}
 
                     <button
                         className="image-modal-close-button"
@@ -67,15 +51,37 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                     />
                 </div>
                 <div className="image-modal-footer">
-                    got feedback? fill out this{" "}
-                    <a
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfPumIVFRfFFLpDfTZDMXdArtbP4M6WQDJX1PxO7wQBLAyq0w/viewform"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        quick survey
-                    </a>
-                    !
+                    <div className="image-modal-download-button-wrapper">
+                        {canShare ? (
+                            <button
+                                onClick={shareImage}
+                                className="image-modal-download-button"
+                            >
+                                Share image
+                            </button>
+                        ) : (
+                            <a
+                                href={imageUrl}
+                                className="image-modal-download-button"
+                                download
+                            >
+                                Save image
+                            </a>
+                        )}
+                    </div>
+                    <div className="feedback-survey">
+                        got feedback?
+                        <br />
+                        fill out this{" "}
+                        <a
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSfPumIVFRfFFLpDfTZDMXdArtbP4M6WQDJX1PxO7wQBLAyq0w/viewform"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            quick survey
+                        </a>
+                        !
+                    </div>
                 </div>
             </div>
         </div>
