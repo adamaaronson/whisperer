@@ -57,7 +57,7 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                                 onClick={shareImage}
                                 className="image-modal-download-button"
                             >
-                                Share
+                                Share image
                             </button>
                         ) : (
                             <a
@@ -65,7 +65,7 @@ export function ImageModal({ imageUrl, onCloseModal }: Props) {
                                 className="image-modal-download-button"
                                 download
                             >
-                                Save
+                                Save image
                             </a>
                         )}
                     </div>
