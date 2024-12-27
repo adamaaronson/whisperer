@@ -41,6 +41,14 @@ function App() {
         }
     };
 
+    const undoRemovePartialPixels = () => {
+        const imageOutput = document.getElementById("image-output");
+        if (imageOutput) {
+            imageOutput.style.width = "";
+            imageOutput.style.height = "";
+        }
+    };
+
     const downloadImage = () => {
         removePartialPixels();
 
@@ -50,6 +58,7 @@ function App() {
         }).then(function (canvas) {
             setWhisperImageUrl(canvas.toDataURL("image/png"));
             setImageModalVisible(true);
+            undoRemovePartialPixels();
         });
     };
 
