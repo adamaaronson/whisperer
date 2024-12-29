@@ -114,7 +114,7 @@ function App() {
                 )}
                 <Callout
                     url="https://newyear.zone/"
-                    message="Celebrate the New Year at New Year Zone!"
+                    message="Count down to 2025 at New Year Zone!"
                 />
             </div>
             <Footer />

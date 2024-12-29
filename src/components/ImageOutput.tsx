@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/ImageOutput.scss";
 
 const TEXT_STROKE_STEPS = 32;
@@ -38,6 +39,14 @@ export function ImageOutput({
     settings,
     setSetting,
 }: Props) {
+    const [draggingText, setDraggingText] = useState(false);
+    const [textOffset, setTextOffset] = useState({ x: 0, y: 0 });
+    const [textDragOrigin, setTextDragOrigin] = useState({ x: 0, y: 0 });
+    const [textOffsetAtOrigin, setTextOffsetAtOrigin] = useState({
+        x: 0,
+        y: 0,
+    });
+
     const getTextShadowCoordinates = (steps: number, strokeWidth: number) => {
         let coordinates = [];
 
@@ -117,13 +126,53 @@ export function ImageOutput({
         }
     };
 
+    const startDraggingText = (event: React.PointerEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        setDraggingText(true);
+        setTextDragOrigin({
+            x: event.clientX,
+            y: event.clientY,
+        });
+        setTextOffsetAtOrigin({
+            x: textOffset.x,
+            y: textOffset.y,
+        });
+    };
+    const dragText = (event: React.PointerEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        if (draggingText) {
+            setTextOffset({
+                x: event.clientX + textOffsetAtOrigin.x - textDragOrigin.x,
+                y: event.clientY + textOffsetAtOrigin.y - textDragOrigin.y,
+            });
+        }
+    };
+    const stopDraggingText = (event: React.PointerEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        setDraggingText(false);
+    };
+    const resetTextOffset = () => {
+        setTextOffset({ x: 0, y: 0 });
+        setTextOffsetAtOrigin({ x: 0, y: 0 });
+        setTextDragOrigin({ x: 0, y: 0 });
+    };
+
     return (
         <div className="image-output-wrapper full-width-box">
             <button className="change-image-button" onClick={onChangeImage}>
                 Change image
             </button>
             <div className="image-output" id="image-output">
-                <div className="image-text-wrapper">
+                <div
+                    className="image-text-wrapper"
+                    onPointerDown={startDraggingText}
+                    onPointerMove={dragText}
+                    onPointerUp={stopDraggingText}
+                    onPointerLeave={stopDraggingText}
+                    style={{
+                        translate: `${textOffset.x}px ${textOffset.y}px`,
+                    }}
+                >
                     <div
                         className="image-text"
                         style={{
@@ -160,6 +209,7 @@ export function ImageOutput({
                         id="image-output-image"
                         src={imageObjectUrl}
                         width="100%"
+                        draggable={false}
                     />
                 </div>
             </div>
@@ -184,6 +234,7 @@ export function ImageOutput({
                         className="settings-item-input"
                         value={settings.textAlignment}
                         onChange={(e) => {
+                            resetTextOffset();
                             setSetting({
                                 textAlignment: e.target.value as TextAlignment,
                             });
@@ -205,6 +256,9 @@ export function ImageOutput({
                             Bottom right
                         </option>
                     </select>
+                    <span className="settings-note">
+                        new: you can drag text too!
+                    </span>
                 </div>
                 <div className="settings-item">
                     <div className="settings-item-name">Font:</div>

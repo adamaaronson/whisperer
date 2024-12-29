@@ -1,3 +1,4 @@
+import "../styles/Callout.scss";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -10,7 +11,11 @@ export default function Callout({ url, message }: CalloutProps) {
     return (
         <div className="callout">
             <a href={url} target="_blank" rel="noopener noreferrer"></a>
-            {message} <FontAwesomeIcon icon={faArrowRight} />
+            {message}
+            <span className="callout-tail">
+                {"\u00a0"}
+                <FontAwesomeIcon icon={faArrowRight} />
+            </span>
         </div>
     );
 }
