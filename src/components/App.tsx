@@ -8,6 +8,7 @@ import { Settings, TextAlignment, ImageOutput } from "./ImageOutput";
 import { ImageModal } from "./ImageModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import Callout from "./Callout";
 
 function App() {
     const [imageText, setImageText] = useState("");
@@ -111,6 +112,10 @@ function App() {
                         onCloseModal={() => setImageModalVisible(false)}
                     />
                 )}
+                <Callout
+                    url="https://newyear.zone/"
+                    message="Celebrate the New Year at New Year Zone!"
+                />
             </div>
             <Footer />
         </div>
