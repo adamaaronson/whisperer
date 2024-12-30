@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "../styles/ImageOutput.scss";
 
 const TEXT_STROKE_STEPS = 32;
@@ -46,6 +46,8 @@ export function ImageOutput({
         x: 0,
         y: 0,
     });
+
+    const imageTextRef = useRef<HTMLSpanElement | null>(null);
 
     const getTextShadowCoordinates = (steps: number, strokeWidth: number) => {
         let coordinates = [];
@@ -128,6 +130,18 @@ export function ImageOutput({
 
     const startDraggingText = (event: React.PointerEvent<HTMLDivElement>) => {
         event.preventDefault();
+        if (!imageTextRef.current) {
+            return;
+        }
+        const imageTextRect = imageTextRef.current.getBoundingClientRect();
+        if (
+            event.clientX < imageTextRect.left ||
+            event.clientX > imageTextRect.right ||
+            event.clientY < imageTextRect.top ||
+            event.clientY > imageTextRect.bottom
+        ) {
+            return;
+        }
         setDraggingText(true);
         setTextDragOrigin({
             x: event.clientX,
@@ -182,7 +196,9 @@ export function ImageOutput({
                             ...getTextAlignmentStyle(),
                         }}
                     >
-                        {imageText}
+                        <span className="image-text-span" ref={imageTextRef}>
+                            {imageText}
+                        </span>
                     </div>
                     {settings.outline &&
                         getTextShadowCoordinates(TEXT_STROKE_STEPS, 0.06).map(

@@ -12,8 +12,6 @@
     width: calc(100% - 2rem);
     height: calc(100% - 2rem);
     font-size: 4rem;
-    cursor: move;
-    touch-action: none;
 
     @media (max-width: 500px) {
         font-size: 3rem;
@@ -40,7 +38,12 @@
 
     font-family: "Whisper";
     color: $white;
-    pointer-events: none;
+}
+
+.image-text-span {
+    cursor: move;
+    user-select: none;
+    touch-action: none;
 }
 
 .image-text-evil {
