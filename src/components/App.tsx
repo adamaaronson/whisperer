@@ -112,10 +112,6 @@ function App() {
                         onCloseModal={() => setImageModalVisible(false)}
                     />
                 )}
-                <Callout
-                    url="https://newyear.zone/"
-                    message="Count down to 2025 at New Year Zone!"
-                />
             </div>
             <Footer />
         </div>
